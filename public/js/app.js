@@ -3,7 +3,8 @@
 const record = document.querySelector(".record");
 console.log(record.innerHTML);
 const stop =document.querySelector(".stop");
-
+var body=document.querySelector("body");
+var heading=document.querySelector(".writing");
 var chunks = [];
 
 
@@ -21,6 +22,14 @@ device.then((stream)=>{
 
     const mediaRecorder = new MediaRecorder(stream);
     record.onclick = () => {
+        console.log("inside on click");
+        console.log(heading.innerHTML);
+        heading.innerHTML='';
+        record.classList.remove("breathing");
+        record.classList.add("pulsing");
+        body.classList.remove("blackgradient");
+        body.classList.add("yellowgradient");
+        
         mediaRecorder.start(5000);
         setTimeout(() => {
           mediaRecorder.stop();
@@ -28,17 +37,16 @@ device.then((stream)=>{
         console.log("started");
         console.log(mediaRecorder.state);
         console.log("recorder started");
-        record.style.background = "red";
-        record.style.color = "black";
+        
       };
 
-      stop.onclick = () => {
-        mediaRecorder.stop();
-        console.log(mediaRecorder.state);
-        console.log("recorder stopped");
-        record.style.background = "";
-        record.style.color = "";
-      };
+      // stop.onclick = () => {
+      //   mediaRecorder.stop();
+      //   console.log(mediaRecorder.state);
+      //   console.log("recorder stopped");
+      //   record.style.background = "";
+      //   record.style.color = "";
+      // };
 
       //when recorder is stopeed data is stored and this data is pushed back in chhunks array
      mediaRecorder.ondataavailable = (e) => {
@@ -138,10 +146,11 @@ function uploadBlob(blob) {
     console.log(objdataandstatus);
     console.log(typeof objdataandstatus);
 
-    
+    const hasKey = objdataandstatus.hasOwnProperty('track');
 
-    if(datasandstatus.statuscode===200)
+    if(hasKey && datasandstatus.statuscode===200)
     {
+      console.log("inside 200 success");
     var successform=document.getElementById("detected");
     console.log(successform);
 
@@ -193,28 +202,10 @@ function uploadBlob(blob) {
     }
     
     else{
+
+      console.log("inside failed");
       var failureform=document.getElementById("failure");
       console.log(failureform);
-
-      var input1=document.createElement('input')
-      var input2=document.createElement('input')
-      var input3=document.createElement('input')
-        input1.name='artistname';
-        input2.name='trackname';
-        input3.name='imgsrc';
-  
-        input1.value='alan';
-        input2.value='faded';
-        input3.value='someurl';
-
-        input1.type='hidden';
-        input2.type='hidden';
-        input3.type='hidden';
-
-      failureform.appendChild(input1);
-      failureform.appendChild(input2);
-      failureform.appendChild(input3);
-
       failureform.submit();
     }
 

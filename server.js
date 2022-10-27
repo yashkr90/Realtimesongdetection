@@ -153,9 +153,13 @@ app.post("/detected",(req,res)=>{
     // {
     //   lyricsarr.push(lyrics[i]);
     // }
+    var size=Object.keys(lyrics).length;
+    console.log(size);
+    if(size>0){
     lyrics.forEach(element => {
       lyricsarr.push(element);
     })
+  }
     // lyricsarr.push(lyrics[1]);
     // lyricsarr.push(lyrics[2]);
     console.log(lyricsarr);
