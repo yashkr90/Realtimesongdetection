@@ -3,6 +3,7 @@ const express=require("express")
 const bodyParser=require("body-parser");
 var multer  = require('multer');
 const fs = require('fs');
+const path = require("path");
 
 // const fetch =require("node-fetch");
 // import fetch from 'node-fetch';
@@ -14,6 +15,9 @@ const app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.static(__dirname+"/public"));
+app.use(express.json());
+
+app.set('view engine', 'ejs');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,8 +32,8 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 var type = upload.single('upl');
 
-
-
+var lyrics={};
+var lyricsarr=[];
 
 
 app.get("/", (req,res)=>{
@@ -43,19 +47,20 @@ app.get("/", (req,res)=>{
 app.post("/",type,(req,res)=>{
 
   
-  
+  // res.sendFile(__dirname+'/success.html');
   console.log("inside post");
   console.log(req.body);
   console.log("file is below");
   // var jsonreq=JSON.stringify(req);
   // console.log(req);
-  console.log(req.file);
+  console.log(req.file);//gives the blob file
   const myfile=req.file;
   
   console.log(myfile.filename);
       // console.log( "this is of type", typeof(req.file));
 
   const songname= __dirname + '/public/uploads/' + req.file.filename;
+
   console.log(typeof songname);
   console.log(songname);
 
@@ -65,7 +70,7 @@ app.post("/",type,(req,res)=>{
     url: 'https://shazam-core.p.rapidapi.com/v1/tracks/recognize',
     headers: {
       'content-type': 'multipart/form-data; boundary=---011000010111000001101001',
-      'X-RapidAPI-Key': 'bdba7736c9mshdcee368220f321bp19a210jsn47c5d4112f40',
+      'X-RapidAPI-Key': '93948ec041msh9f1ef4500797f4ap198fc9jsna9559c16dff0',
       'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com',
       useQueryString: true
     },
@@ -79,14 +84,48 @@ app.post("/",type,(req,res)=>{
 
   request(options, function (error, response, body) {
 
-    console.log(body);
+    // console.log(body);
+
     if (error){
       console.log("there is error"+error);
-    } else
-    console.log(response.statusCode);
+    } 
+    else
+    {
+      console.log(response.statusCode);
+      if(response.statusCode===200)
+      {
+        res.json({
+          status:'pass',
+          resbody:body,
+          statuscode:response.statusCode
+        });
+        // res.redirect(307,'/detected');
+        // res.sendFile(__dirname+'/success.html');
+      }
+      else
+      {
+        console.log("failes to detect");
+        // res.send("failed");
+        // res.sendFile(__dirname+"/failure.html", function(err) { if (err) console.log(err); })
+        // res.redirect(308,'/detected');
+        // res.sendFile(path.resolve(__dirname+"/failure.html"));
+        res.json({
+          status:'failed',
+          resbody:body,
+          statuscode:response.statusCode
+        });
+      }
+    }
   });
 
     
+  });
+
+  app.post("/failure",(req,res)=>{
+
+    console.log("inside failure");
+    
+    res.sendFile(__dirname+"/failure.html");
   });
 
   // res.redirect(307,'/detected');
@@ -103,7 +142,35 @@ app.post("/",type,(req,res)=>{
 
 app.post("/detected",(req,res)=>{
 
-  res.send("<h1>song detected</h1>");
+  console.log("insode detected")
+  console.log(req.body);
+    console.log(req.body.imgsrc);
+    console.log(typeof req.body.lyrics);
+    console.log("lyrics is");
+    console.log(lyrics);
+    console.log(lyrics[1]);
+    // for(var i=0; lyrics.length ;i+=1 )
+    // {
+    //   lyricsarr.push(lyrics[i]);
+    // }
+    lyrics.forEach(element => {
+      lyricsarr.push(element);
+    })
+    // lyricsarr.push(lyrics[1]);
+    // lyricsarr.push(lyrics[2]);
+    console.log(lyricsarr);
+    console.log(typeof lyricsarr);
+    var imgsrc=req.body.imgsrc;
+    var artistname=req.body.artistname;
+    var trackname=req.body.trackname;
+    res.render('success' , {artistname:artistname,trackname: trackname,imgsrc: imgsrc, lyricsarr: lyricsarr});
+
+    // var arraylyrics=Object.values(lyrics);
+    // console.log(typeof arraylyrics);
+
+
+  // res.sendFile(__dirname+"/success.html");
+  // res.sendFile("public/html/failure.html",{ root : __dirname});
 })
     
 
@@ -111,8 +178,32 @@ app.post("/detected",(req,res)=>{
 // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 //     console.log("getUserMedia supported.")
 
+app.post("/redirect",(req,res)=>{
 
+  res.redirect('/');
+})
+
+app.post("/putval",(req,res)=>{
+
+  console.log("inside putval");
+  // console.log("req is"+req);//when writing string infront it makes whole thing as string
+  console.log(req.body);
+  console.log(typeof req.body);
+  lyrics=req.body;
+  // console.log('req.file is'+req.file);
+  console.log(lyrics);
+  res.json({});
+
+  // console.log('file is of type'+typeof req.file);
+  // lyrics=req.file;
+  // console.log('lyrics converted to json' +typeof JSON.stringify(lyrics));
+
+})
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
 });
+
+//bdba7736c9mshdcee368220f321bp19a210jsn47c5d4112f40
+
+//saketapi 93948ec041msh9f1ef4500797f4ap198fc9jsna9559c16dff0

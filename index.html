@@ -18,16 +18,18 @@
     </div>
 
     <button type="button" class="record" id="start-aud-recording">
-        Start recording 
+        Record
     </button>
-
     <button type="button" class="stop" id="stop-aud-recording">
         Stop recording
     </button>
 
-    <form  action="/" method="post" id="audiorec" >
+    
+
+    <form  action="/detected" method="POST" id="detected" >
         
-        <button type="submit" class="send" id="btnsub">Send data</button>
+    </form>
+    <form  action="/failure" method="POST" id="failure" >
         
     </form>
     <!-- The audio element will contain the 
