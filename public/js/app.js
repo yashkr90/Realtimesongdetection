@@ -15,7 +15,7 @@ var datasandstatus={};
 
 
 
-var device =navigator.mediaDevices.getUserMedia({audio: true,});
+var device =navigator.mediaDevices.getUserMedia({audio: true});
 
 
 device.then((stream)=>{
