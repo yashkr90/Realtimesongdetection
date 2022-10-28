@@ -158,6 +158,9 @@ function uploadBlob(blob) {
     var artistname=objdataandstatus.track.subtitle;
     var imgsrc=objdataandstatus.track.images.coverarthq;
     var lyrics=objdataandstatus.track.sections[1].text;
+    var artistimage=objdataandstatus.track.images.background;
+    var genres=objdataandstatus.track.genres.primary;
+    var yturl=objdataandstatus.track.hub.providers[1].actions[0].uri;
     console.log("lyrics is of" +typeof lyrics);
     console.log(lyrics);
 
@@ -166,24 +169,39 @@ function uploadBlob(blob) {
     var input1=document.createElement('input')
     var input2=document.createElement('input')
     var input3=document.createElement('input')
+    var input4=document.createElement('input')
+    var input5=document.createElement('input')
+    var input6=document.createElement('input')
     // var input4=document.createElement('input')
       input1.name='artistname';
       input2.name='trackname';
       input3.name='imgsrc';
+      input4.name='artistimage';
+      input5.name='genres';
+      input6.name='yturl';
       // input4.name='lyrics';
 
       input1.value=artistname;
       input2.value=trackname;
       input3.value=imgsrc;
+      input4.value=artistimage;
+      input5.value=genres;
+      input6.value=yturl;
       // input4.value=lyrics;
 
       input1.type='hidden';
       input2.type='hidden';
       input3.type='hidden';
+      input4.type='hidden';
+      input5.type='hidden';
+      input6.type='hidden';
 
       successform.appendChild(input1);
       successform.appendChild(input2);
       successform.appendChild(input3);
+      successform.appendChild(input4);
+      successform.appendChild(input5);
+      successform.appendChild(input6);
       // successform.appendChild(input4);
 
       fetch("/putval",{

@@ -1,0 +1,24 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: .25rem;
+  }
+  
+  .card .card-header {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    border-bottom: none;
+    color: #ffc107 !important;
+    font-weight: 400;
+  }
+
+  body{
+    background-color: #ffc107;
+  }
+  

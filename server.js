@@ -5,6 +5,11 @@ var multer  = require('multer');
 const fs = require('fs');
 const path = require("path");
 
+const { promisify } = require('util')
+
+const unlinkAsync = promisify(fs.unlink)
+
+
 // const fetch =require("node-fetch");
 // import fetch from 'node-fetch';
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
@@ -88,6 +93,7 @@ app.post("/",type,(req,res)=>{
 
     if (error){
       console.log("there is error"+error);
+      unlinkAsync(req.file.path);
     } 
     else
     {
@@ -99,6 +105,7 @@ app.post("/",type,(req,res)=>{
           resbody:body,
           statuscode:response.statusCode
         });
+        unlinkAsync(req.file.path);
         // res.redirect(307,'/detected');
         // res.sendFile(__dirname+'/success.html');
       }
@@ -114,6 +121,7 @@ app.post("/",type,(req,res)=>{
           resbody:body,
           statuscode:response.statusCode
         });
+        unlinkAsync(req.file.path);
       }
     }
   });
@@ -167,7 +175,10 @@ app.post("/detected",(req,res)=>{
     var imgsrc=req.body.imgsrc;
     var artistname=req.body.artistname;
     var trackname=req.body.trackname;
-    res.render('success' , {artistname:artistname,trackname: trackname,imgsrc: imgsrc, lyricsarr: lyricsarr});
+    var artistimage=req.body.artistimage;
+    var genres=req.body.genres;
+    var yturl=req.body.yturl;
+    res.render('success' , {artistname:artistname,trackname: trackname,imgsrc: imgsrc, lyricsarr: lyricsarr,artistimage:artistimage,genres:genres,yturl:yturl});
 
     // var arraylyrics=Object.values(lyrics);
     // console.log(typeof arraylyrics);
@@ -183,7 +194,7 @@ app.post("/detected",(req,res)=>{
 //     console.log("getUserMedia supported.")
 
 app.post("/redirect",(req,res)=>{
-
+  lyricsarr=[];
   res.redirect('/');
 })
 

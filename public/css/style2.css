@@ -1,0 +1,1389 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Nunito:600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+* {
+  box-sizing: border-box;
+}
+.player_inner__top img{
+    pointer-events: none;
+    position: absolute;
+    /* width: 100% !important; */
+    /* height: 100% !important; */
+    z-index: -1
+}
+div.imgcover{
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+body {
+    background-color:#4cb892!important ;
+  background: #cbded8;
+  margin: 0;
+  overflow: hidden;
+}
+
+.b_overlay {
+  position: fixed;
+  background: rgba(69, 195, 155, 0.64);
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.bar {
+  background: white;
+  position: fixed;
+  bottom: -50px;
+  -webkit-animation: up 300ms 500ms forwards;
+          animation: up 300ms 500ms forwards;
+  width: 100%;
+  height: 48px;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  font-weight: 600;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  z-index: 2;
+}
+.bar_inner__left {
+  float: left;
+}
+.bar_inner__left .brand {
+  background: #45c39b;
+  position: relative;
+  padding: 15px;
+  display: inline-block;
+  margin-right: -4px;
+  transition: all 300ms;
+}
+.bar_inner__left .brand a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.bar_inner__left .brand img {
+  width: 40px;
+  position: relative;
+  top: 2px;
+}
+.bar_inner__left .brand:hover {
+  background: #35a07e;
+}
+.bar_inner__left .selection {
+  position: relative;
+  display: inline-block;
+  background: white;
+  border-right: 1px solid #e6e6e6;
+  padding: 15px 20px 18px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #5d6265;
+  min-width: 340px;
+  position: relative;
+  top: -1px;
+  transition: background 300ms, border 300ms;
+}
+.bar_inner__left .selection:hover {
+  background: #eceff3;
+  border-right: 1px solid #d9dfe7;
+}
+.bar_inner__left .selection .fa-codepen {
+  margin-right: 8px;
+  font-size: 15px;
+}
+.bar_inner__left .selection .fa-chevron-up {
+  font-size: 10px;
+  opacity: 0.4;
+  position: relative;
+  top: 4px;
+  margin-left: 8px;
+  float: right;
+  transition: all 200ms;
+  transform-origin: 5px 6px;
+}
+.bar_inner__left .selection_list {
+  position: absolute;
+  background: #eceff3;
+  border-bottom: 0;
+  opacity: 0;
+  bottom: -250px;
+  width: 100%;
+  max-height: 165px;
+  z-index: -1;
+  border-bottom: 1px solid #dce2e9;
+  transition: bottom 200ms, opacity 200ms;
+  left: 0;
+  overflow: scroll;
+}
+.bar_inner__left .selection_list::-webkit-scrollbar {
+  width: 3px;
+  background-color: #F5F5F5;
+}
+.bar_inner__left .selection_list::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border: 2px solid #555555;
+}
+.bar_inner__left .selection_list a {
+  display: block;
+  text-decoration: none;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: all 300ms;
+  color: #5d6265;
+}
+.bar_inner__left .selection_list a i {
+  position: absolute;
+  opacity: 0;
+  right: -40px;
+  transition: right 300ms, opacity 300ms;
+  font-size: 10px;
+  top: 20px;
+}
+.bar_inner__left .selection_list a:hover {
+  background: #dfe4eb;
+  text-indent: 10px;
+  color: #309292;
+}
+.bar_inner__left .selection_list a:hover i {
+  opacity: 1;
+  right: 20px;
+}
+.bar_inner__left p {
+  margin: 0;
+  display: inline-block;
+  margin-left: 14px;
+}
+.bar_inner__left p i {
+  color: red;
+  font-size: 10px;
+}
+.bar_inner__right {
+  float: right;
+  color: white;
+}
+.bar_inner__right i {
+  margin-right: 10px;
+}
+.bar_inner__right .youtube {
+  background: #e22424;
+  display: inline-block;
+  margin-left: -4px;
+  padding: 16px 19px 17px 19px;
+  transition: all 300ms;
+  cursor: pointer;
+  position: relative;
+}
+.bar_inner__right .youtube i.fa-chevron-right {
+  margin-left: 10px;
+  font-size: 10px;
+  position: absolute;
+  right: -100px;
+  opacity: 0;
+  transition: all 300ms;
+  top: 20px;
+}
+.bar_inner__right .youtube i.fa-play {
+  font-size: 12px;
+}
+.bar_inner__right .youtube .v_preview {
+  background: #e22424;
+  width: 102%;
+  transition: all 300ms;
+  position: absolute;
+  height: 150px;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.bar_inner__right .youtube:hover {
+  background: #cc1b1b;
+  padding: 16px 29px 17px 19px;
+}
+.bar_inner__right .youtube:hover i.fa-chevron-right {
+  right: 0;
+  opacity: 1;
+}
+.bar_inner__right .youtube:hover .v_preview {
+  top: -150px;
+}
+.bar_inner__right .tweet {
+  display: inline-block;
+  color: #1da1f2;
+  padding: 16px 20px 17px 20px;
+  transition: all 300ms;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+.bar_inner__right .tweet a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.bar_inner__right .tweet:hover {
+  background: #0d92e3;
+  color: white;
+}
+.bar_inner__right .codepen {
+  display: inline-block;
+  color: #5d6265;
+  border-right: 1px solid #e6e6e6;
+  padding: 16px 20px 17px 20px;
+  transition: all 300ms;
+  cursor: pointer;
+  position: relative;
+}
+.bar_inner__right .codepen a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.bar_inner__right .codepen:hover {
+  background: #1a1b1f;
+  color: white;
+}
+
+.owl .left-eye,
+.owl .right-eye {
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  bottom: 71px;
+  z-index: 2;
+}
+
+.owl .left-pupil,
+.owl .right-pupil {
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  display: block;
+  transform: translateY(0px);
+  position: absolute;
+  -webkit-animation: blink 3s infinite;
+          animation: blink 3s infinite;
+}
+
+.owl {
+  width: 100px;
+  position: absolute;
+  right: 60px;
+  bottom: -140px;
+  -webkit-animation: owl 1s 1s forwards, owl_bob 1.4s 2s infinite;
+          animation: owl 1s 1s forwards, owl_bob 1.4s 2s infinite;
+  transition: all 1s;
+  z-index: 1;
+}
+.owl .left-eye {
+  right: 63px;
+}
+.owl .right-eye {
+  right: 23px;
+}
+.owl .love {
+  opacity: 0;
+  position: absolute;
+  bottom: 50px;
+  right: 94px;
+  transition: all 0.2s 0.2s;
+  width: 70px;
+}
+
+._video_id,
+._pen_id,
+._pen_title {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .bar_inner__left, .bar_inner__right {
+    width: 50%;
+  }
+  .bar_inner__left .tweet, .bar_inner__left .codepen, .bar_inner__right .tweet, .bar_inner__right .codepen {
+    width: 20%;
+    text-align: center;
+  }
+  .bar_inner__left .tweet i, .bar_inner__left .codepen i, .bar_inner__right .tweet i, .bar_inner__right .codepen i {
+    margin: 0;
+  }
+  .bar_inner__left .youtube, .bar_inner__right .youtube {
+    width: 60%;
+    left: 4px;
+  }
+  .bar_inner__left span, .bar_inner__right span {
+    display: none;
+  }
+  .bar_inner__left .brand {
+    z-index: 1;
+  }
+  .bar_inner__left .selection {
+    padding-left: 90px;
+    left: 0;
+    position: absolute;
+    top: 1px;
+    width: 50%;
+  }
+}
+@media (max-width: 764px) {
+  .bar_inner__left, .bar_inner__right {
+    width: 100%;
+  }
+  .bar_inner__left .tweet, .bar_inner__left .codepen, .bar_inner__right .tweet, .bar_inner__right .codepen {
+    width: 20%;
+    display: none;
+    border: none;
+    text-align: center;
+  }
+  .bar_inner__left .tweet i, .bar_inner__left .codepen i, .bar_inner__right .tweet i, .bar_inner__right .codepen i {
+    margin: 0;
+  }
+  .bar_inner__left .youtube, .bar_inner__right .youtube {
+    width: 60%;
+    display: none;
+    left: 4px;
+  }
+  .bar_inner__left span, .bar_inner__right span {
+    display: none;
+  }
+  .bar_inner__left .brand {
+    z-index: 1;
+  }
+  .bar_inner__left .selection {
+    padding-left: 90px;
+    left: 0;
+    border: none !important;
+    position: absolute;
+    top: 1px;
+    width: 100%;
+  }
+}
+@-webkit-keyframes up {
+  0% {
+    bottom: -50px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+@keyframes up {
+  0% {
+    bottom: -50px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+@-webkit-keyframes owl {
+  0% {
+    bottom: -140px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@keyframes owl {
+  0% {
+    bottom: -140px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@-webkit-keyframes owl_bob {
+  0% {
+    bottom: 10px;
+  }
+  50% {
+    bottom: 14px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@keyframes owl_bob {
+  0% {
+    bottom: 10px;
+  }
+  50% {
+    bottom: 14px;
+  }
+  100% {
+    bottom: 10px;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  46% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  50% {
+    height: 0px;
+    transform: translateY(4px);
+  }
+  54% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  100% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+}
+@keyframes blink {
+  0% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  46% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  50% {
+    height: 0px;
+    transform: translateY(4px);
+  }
+  54% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+  100% {
+    height: 8px;
+    transform: translateY(0px);
+  }
+}
+.shadow_right {
+  width: 90px;
+  height: 380px;
+  transition: all 300ms 200ms;
+  top: 0px;
+  position: absolute;
+  pointer-events: none;
+  box-shadow: 0px 0px 0px #303f45 inset;
+}
+
+i {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+i:hover {
+  color: #44f5b7;
+}
+
+.shadow_left {
+  width: 90px;
+  height: 380px;
+  transition: all 300ms 200ms;
+  top: 0px;
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  box-shadow: 0px 0px 0px #303f45 inset;
+}
+
+.r_trim {
+  width: 260px;
+  height: 660px;
+  position: absolute;
+  left: 420px;
+  z-index: 2;
+  right: 0;
+  top: -82px;
+  margin: auto;
+  background: #4cb892;
+}
+
+.l_trim {
+  width: 260px;
+  height: 660px;
+  position: absolute;
+  z-index: 2;
+  left: -640px;
+  right: 0;
+  top: -82px;
+  margin: auto;
+  background: #4cb892;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #4cb892;
+}
+
+body .player_inner__middle .cube, body .player_inner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+body .player_inner__middle .cube_inner > div {
+  width: 380px;
+  height: 380px;
+  
+  position: absolute;
+  transform-style: preserve-3D;
+}
+
+body .player_inner {
+  background: #3a4e47;
+  width: 380px;
+  height: 640px;
+  border-radius: 6px;
+  perspective: 800px;
+}
+body .player_inner__top {
+  height: 70px;
+  padding: 0px;
+  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/koan.png"); */
+  background-size: 103% !important;
+  margin-bottom: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+body .player_inner__top i,
+body .player_inner__top h1 {
+  position: relative;
+  color: white;
+  font-weight: 600;
+}
+body .player_inner__top .t_left {
+margin-top: 1rem;
+margin-left: 1rem;
+  width: 25%;
+  float: left;
+}
+body .player_inner__top .t_mid {
+  float: left;
+  text-align: center;
+  width: 50%;
+}
+body .player_inner__top .t_mid h1 {
+  margin: 0;
+  font-size: 12px;
+}
+body .player_inner__top .t_right {
+  float: right;
+  width: 25%;
+  text-align: right;
+}
+body .player_inner__middle {
+  position: relative;
+  height: 380px;
+  background: #40555f;
+  box-shadow: 0px 0px 110px #181f23 inset;
+}
+body .player_inner__middle .empty {
+  display: none;
+}
+body .player_inner__middle input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent !important;
+  outline: none;
+  transition: all 0.3s;
+  width: 60px !important;
+  height: 50px !important;
+  line-height: 16px;
+}
+body .player_inner__middle input:hover {
+  background: #00000061 !important;
+}
+body .player_inner__middle input:hover:after {
+  color: #44f5b7 !important;
+}
+body .player_inner__middle input:nth-of-type(1) {
+  width: 130px !important;
+  top: 40px;
+  height: 320px !important;
+}
+body .player_inner__middle input:nth-of-type(1):hover {
+  background: none !important;
+}
+body .player_inner__middle input:nth-of-type(1)::after {
+  font-family: "Open Sans", sans-serif, "fontawesome";
+  content: "";
+  display: block;
+  left: 0 !important;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+body .player_inner__middle input:nth-of-type(2) {
+  display: none;
+}
+body .player_inner__middle input:nth-of-type(2)::after {
+  font-family: "'Bootstrap-icons";
+  content: "\F49F";
+  display: block;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+body .player_inner__middle input:nth-of-type(3) {
+  BORDER-TOP-LEFT-RADIUS: 50PX;
+  border-bottom-left-radius: 50px;
+}
+body .player_inner__middle input:nth-of-type(3)::after {
+  font-family: "Bootstrap-icons";
+  content: "\F49F";
+  display: block;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+body .player_inner__middle input:nth-of-type(3):checked {
+  opacity: 0;
+  right: -50px;
+  box-shadow: 0px 0px 0px 100px #00000061;
+  pointer-events: none;
+}
+body .player_inner__middle input:nth-of-type(3):checked + input + input + div > .cube_inner > .cube_inner__right i {
+  opacity: 1;
+  top: 8px;
+  transition: all 0.3s 0.3s;
+}
+body .player_inner__middle input:nth-of-type(3):checked + input + input + div + div + div + div {
+  display: block;
+  box-shadow: 60px 10px 50px -17px #303f45 inset;
+}
+body .player_inner__middle input:nth-of-type(3):checked + input + input + div + div + div + div + div {
+  display: block;
+  box-shadow: -60px 10px 50px -17px #303f45 inset;
+}
+body .player_inner__middle input:nth-of-type(4) {
+  BORDER-TOP-right-RADIUS: 50PX;
+  border-bottom-right-radius: 50px;
+}
+body .player_inner__middle input:nth-of-type(4)::after {
+  font-family: "fontawesome";
+  content: "";
+  display: block;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  left: 4px;
+}
+body .player_inner__middle input:nth-of-type(4):checked {
+  opacity: 0;
+  left: -50px;
+  pointer-events: none;
+  box-shadow: 0px 0px 0px 100px #00000061;
+}
+body .player_inner__middle input:nth-of-type(4):checked + input + div + div + div + div {
+  display: block;
+  box-shadow: 60px 10px 50px -17px #303f45 inset;
+}
+body .player_inner__middle input:nth-of-type(4):checked + input + div + div + div + div + div {
+  display: block;
+  box-shadow: -60px 10px 50px -17px #303f45 inset;
+}
+body .player_inner__middle .trigger--4, body .player_inner__middle .trigger--3, body .player_inner__middle .trigger--2, body .player_inner__middle .trigger--1 {
+  background: black;
+  width: 20px;
+  cursor: pointer;
+  height: 400px;
+  position: absolute;
+  z-index: 2;
+  margin: auto;
+  text-align: center;
+}
+body .player_inner__middle .trigger--4::after, body .player_inner__middle .trigger--3::after, body .player_inner__middle .trigger--2::after, body .player_inner__middle .trigger--1::after {
+  position: relative;
+  top: 18px;
+  left: -6px;
+  transition: all 0.3s;
+}
+body .player_inner__middle .trigger--1 {
+  left: 0px;
+  right: auto;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+}
+body .player_inner__middle .trigger--1:checked + input + .cube {
+  transform: translateY(-50%) rotateX(0) rotateY(30deg);
+  transform-origin: 200px 0px -200px;
+  transition: transform 300ms 200ms, transform-origin 0s;
+}
+body .player_inner__middle .trigger--2 {
+  left: auto;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+}
+body .player_inner__middle .trigger--2:checked + input + input + .cube {
+  transform: translateY(-50%) rotateX(0) rotateY(-30deg);
+  transform-origin: 200px 0px -200px;
+  transition: transform 300ms 200ms, transform-origin 0s;
+}
+body .player_inner__middle .trigger--3 {
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: auto;
+  width: 40px;
+  height: 20px;
+}
+body .player_inner__middle .trigger--3:checked + input + input + input + .cube {
+  transform: translateY(-50%) rotateX(0) rotateY(0);
+  transform-origin: 200px 200px -200px;
+  transition: transform 300ms 200ms, transform-origin 0s;
+}
+body .player_inner__middle .trigger--4 {
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: auto;
+  width: 40px;
+  height: 20px;
+}
+body .player_inner__middle .trigger--4:checked + input + input + input + input + .cube {
+  transform: translateY(-50%) rotateX(0) rotateY(0);
+  transform-origin: 200px 200px -200px;
+  transition: transform 300ms 200ms, transform-origin 0s;
+}
+body .player_inner__middle .cube {
+  top: 190px;
+  height: 380px;
+  transform-style: preserve-3D;
+  perspective-origin: 190px 190px;
+  transition: all 300ms 200ms cubic-bezier(0.1, 1.94, 0.32, 1.02), transform-origin 0ms;
+}
+body .player_inner__middle .cube_inner {
+  height: 380px;
+  transform-style: preserve-3D;
+}
+
+body .player_inner__middle .cube_inner > div:nth-of-type(2) {
+  background: #ffacba;
+}
+body .player_inner__middle .cube_inner > div:nth-of-type(3) {
+  background: #ffa1b2;
+}
+body .player_inner__middle .cube_inner > div:nth-of-type(4) {
+  background: #ff97a9;
+}
+body .player_inner__middle .cube_inner__front {
+  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/koan.png") !important; */
+  background-size: 103% !important;
+  background-position-y: -71px !important;
+}
+body .player_inner__middle .cube_inner__front .bars {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: rotatez(180deg);
+  width: 100%;
+  z-index: 1;
+}
+body .player_inner__middle .cube_inner__front .bars_bar {
+  width: 10px;
+  background: white;
+  opacity: 0.1;
+  float: left;
+  width: 10%;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(1) {
+  -webkit-animation: eq 1s 23ms infinite ease-in-out;
+          animation: eq 1s 23ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(2) {
+  -webkit-animation: eq 1s 12ms infinite ease-in-out;
+          animation: eq 1s 12ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(3) {
+  -webkit-animation: eq 1s 45ms infinite ease-in-out;
+          animation: eq 1s 45ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(4) {
+  -webkit-animation: eq 1s 64ms infinite ease-in-out;
+          animation: eq 1s 64ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(5) {
+  -webkit-animation: eq 1s 195ms infinite ease-in-out;
+          animation: eq 1s 195ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(6) {
+  -webkit-animation: eq 1s 162ms infinite ease-in-out;
+          animation: eq 1s 162ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(7) {
+  -webkit-animation: eq 1s 84ms infinite ease-in-out;
+          animation: eq 1s 84ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(8) {
+  -webkit-animation: eq 1s 312ms infinite ease-in-out;
+          animation: eq 1s 312ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(9) {
+  -webkit-animation: eq 1s 171ms infinite ease-in-out;
+          animation: eq 1s 171ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(10) {
+  -webkit-animation: eq 1s 30ms infinite ease-in-out;
+          animation: eq 1s 30ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(11) {
+  -webkit-animation: eq 1s 231ms infinite ease-in-out;
+          animation: eq 1s 231ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(12) {
+  -webkit-animation: eq 1s 312ms infinite ease-in-out;
+          animation: eq 1s 312ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(13) {
+  -webkit-animation: eq 1s 182ms infinite ease-in-out;
+          animation: eq 1s 182ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(14) {
+  -webkit-animation: eq 1s 140ms infinite ease-in-out;
+          animation: eq 1s 140ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(15) {
+  -webkit-animation: eq 1s 45ms infinite ease-in-out;
+          animation: eq 1s 45ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(16) {
+  -webkit-animation: eq 1s 208ms infinite ease-in-out;
+          animation: eq 1s 208ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(17) {
+  -webkit-animation: eq 1s 102ms infinite ease-in-out;
+          animation: eq 1s 102ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(18) {
+  -webkit-animation: eq 1s 234ms infinite ease-in-out;
+          animation: eq 1s 234ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(19) {
+  -webkit-animation: eq 1s 133ms infinite ease-in-out;
+          animation: eq 1s 133ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(20) {
+  -webkit-animation: eq 1s 280ms infinite ease-in-out;
+          animation: eq 1s 280ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(21) {
+  -webkit-animation: eq 1s 819ms infinite ease-in-out;
+          animation: eq 1s 819ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(22) {
+  -webkit-animation: eq 1s 748ms infinite ease-in-out;
+          animation: eq 1s 748ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(23) {
+  -webkit-animation: eq 1s 184ms infinite ease-in-out;
+          animation: eq 1s 184ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(24) {
+  -webkit-animation: eq 1s 384ms infinite ease-in-out;
+          animation: eq 1s 384ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(25) {
+  -webkit-animation: eq 1s 450ms infinite ease-in-out;
+          animation: eq 1s 450ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(26) {
+  -webkit-animation: eq 1s 364ms infinite ease-in-out;
+          animation: eq 1s 364ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(27) {
+  -webkit-animation: eq 1s 27ms infinite ease-in-out;
+          animation: eq 1s 27ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(28) {
+  -webkit-animation: eq 1s 644ms infinite ease-in-out;
+          animation: eq 1s 644ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(29) {
+  -webkit-animation: eq 1s 899ms infinite ease-in-out;
+          animation: eq 1s 899ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(30) {
+  -webkit-animation: eq 1s 660ms infinite ease-in-out;
+          animation: eq 1s 660ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(31) {
+  -webkit-animation: eq 1s 1240ms infinite ease-in-out;
+          animation: eq 1s 1240ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(32) {
+  -webkit-animation: eq 1s 32ms infinite ease-in-out;
+          animation: eq 1s 32ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(33) {
+  -webkit-animation: eq 1s 363ms infinite ease-in-out;
+          animation: eq 1s 363ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(34) {
+  -webkit-animation: eq 1s 1122ms infinite ease-in-out;
+          animation: eq 1s 1122ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(35) {
+  -webkit-animation: eq 1s 70ms infinite ease-in-out;
+          animation: eq 1s 70ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(36) {
+  -webkit-animation: eq 1s 324ms infinite ease-in-out;
+          animation: eq 1s 324ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(37) {
+  -webkit-animation: eq 1s 185ms infinite ease-in-out;
+          animation: eq 1s 185ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(38) {
+  -webkit-animation: eq 1s 950ms infinite ease-in-out;
+          animation: eq 1s 950ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(39) {
+  -webkit-animation: eq 1s 1287ms infinite ease-in-out;
+          animation: eq 1s 1287ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(40) {
+  -webkit-animation: eq 1s 1320ms infinite ease-in-out;
+          animation: eq 1s 1320ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(41) {
+  -webkit-animation: eq 1s 861ms infinite ease-in-out;
+          animation: eq 1s 861ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(42) {
+  -webkit-animation: eq 1s 1050ms infinite ease-in-out;
+          animation: eq 1s 1050ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(43) {
+  -webkit-animation: eq 1s 903ms infinite ease-in-out;
+          animation: eq 1s 903ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(44) {
+  -webkit-animation: eq 1s 1452ms infinite ease-in-out;
+          animation: eq 1s 1452ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(45) {
+  -webkit-animation: eq 1s 270ms infinite ease-in-out;
+          animation: eq 1s 270ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(46) {
+  -webkit-animation: eq 1s 1794ms infinite ease-in-out;
+          animation: eq 1s 1794ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(47) {
+  -webkit-animation: eq 1s 1692ms infinite ease-in-out;
+          animation: eq 1s 1692ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(48) {
+  -webkit-animation: eq 1s 912ms infinite ease-in-out;
+          animation: eq 1s 912ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(49) {
+  -webkit-animation: eq 1s 980ms infinite ease-in-out;
+          animation: eq 1s 980ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(50) {
+  -webkit-animation: eq 1s 600ms infinite ease-in-out;
+          animation: eq 1s 600ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(51) {
+  -webkit-animation: eq 1s 1020ms infinite ease-in-out;
+          animation: eq 1s 1020ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(52) {
+  -webkit-animation: eq 1s 520ms infinite ease-in-out;
+          animation: eq 1s 520ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(53) {
+  -webkit-animation: eq 1s 795ms infinite ease-in-out;
+          animation: eq 1s 795ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(54) {
+  -webkit-animation: eq 1s 432ms infinite ease-in-out;
+          animation: eq 1s 432ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(55) {
+  -webkit-animation: eq 1s 605ms infinite ease-in-out;
+          animation: eq 1s 605ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(56) {
+  -webkit-animation: eq 1s 1792ms infinite ease-in-out;
+          animation: eq 1s 1792ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(57) {
+  -webkit-animation: eq 1s 1653ms infinite ease-in-out;
+          animation: eq 1s 1653ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(58) {
+  -webkit-animation: eq 1s 1218ms infinite ease-in-out;
+          animation: eq 1s 1218ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(59) {
+  -webkit-animation: eq 1s 1416ms infinite ease-in-out;
+          animation: eq 1s 1416ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(60) {
+  -webkit-animation: eq 1s 2160ms infinite ease-in-out;
+          animation: eq 1s 2160ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(61) {
+  -webkit-animation: eq 1s 1098ms infinite ease-in-out;
+          animation: eq 1s 1098ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(62) {
+  -webkit-animation: eq 1s 2046ms infinite ease-in-out;
+          animation: eq 1s 2046ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(63) {
+  -webkit-animation: eq 1s 2394ms infinite ease-in-out;
+          animation: eq 1s 2394ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(64) {
+  -webkit-animation: eq 1s 768ms infinite ease-in-out;
+          animation: eq 1s 768ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(65) {
+  -webkit-animation: eq 1s 650ms infinite ease-in-out;
+          animation: eq 1s 650ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(66) {
+  -webkit-animation: eq 1s 396ms infinite ease-in-out;
+          animation: eq 1s 396ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(67) {
+  -webkit-animation: eq 1s 1675ms infinite ease-in-out;
+          animation: eq 1s 1675ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(68) {
+  -webkit-animation: eq 1s 408ms infinite ease-in-out;
+          animation: eq 1s 408ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(69) {
+  -webkit-animation: eq 1s 2691ms infinite ease-in-out;
+          animation: eq 1s 2691ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(70) {
+  -webkit-animation: eq 1s 1610ms infinite ease-in-out;
+          animation: eq 1s 1610ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(71) {
+  -webkit-animation: eq 1s 1349ms infinite ease-in-out;
+          animation: eq 1s 1349ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(72) {
+  -webkit-animation: eq 1s 2016ms infinite ease-in-out;
+          animation: eq 1s 2016ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(73) {
+  -webkit-animation: eq 1s 2774ms infinite ease-in-out;
+          animation: eq 1s 2774ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(74) {
+  -webkit-animation: eq 1s 444ms infinite ease-in-out;
+          animation: eq 1s 444ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(75) {
+  -webkit-animation: eq 1s 2325ms infinite ease-in-out;
+          animation: eq 1s 2325ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(76) {
+  -webkit-animation: eq 1s 2584ms infinite ease-in-out;
+          animation: eq 1s 2584ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(77) {
+  -webkit-animation: eq 1s 308ms infinite ease-in-out;
+          animation: eq 1s 308ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(78) {
+  -webkit-animation: eq 1s 1248ms infinite ease-in-out;
+          animation: eq 1s 1248ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(79) {
+  -webkit-animation: eq 1s 2844ms infinite ease-in-out;
+          animation: eq 1s 2844ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(80) {
+  -webkit-animation: eq 1s 2560ms infinite ease-in-out;
+          animation: eq 1s 2560ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(81) {
+  -webkit-animation: eq 1s 486ms infinite ease-in-out;
+          animation: eq 1s 486ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(82) {
+  -webkit-animation: eq 1s 738ms infinite ease-in-out;
+          animation: eq 1s 738ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(83) {
+  -webkit-animation: eq 1s 3320ms infinite ease-in-out;
+          animation: eq 1s 3320ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(84) {
+  -webkit-animation: eq 1s 336ms infinite ease-in-out;
+          animation: eq 1s 336ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(85) {
+  -webkit-animation: eq 1s 1870ms infinite ease-in-out;
+          animation: eq 1s 1870ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(86) {
+  -webkit-animation: eq 1s 86ms infinite ease-in-out;
+          animation: eq 1s 86ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(87) {
+  -webkit-animation: eq 1s 1740ms infinite ease-in-out;
+          animation: eq 1s 1740ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(88) {
+  -webkit-animation: eq 1s 176ms infinite ease-in-out;
+          animation: eq 1s 176ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(89) {
+  -webkit-animation: eq 1s 890ms infinite ease-in-out;
+          animation: eq 1s 890ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(90) {
+  -webkit-animation: eq 1s 2250ms infinite ease-in-out;
+          animation: eq 1s 2250ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(91) {
+  -webkit-animation: eq 1s 1911ms infinite ease-in-out;
+          animation: eq 1s 1911ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(92) {
+  -webkit-animation: eq 1s 3588ms infinite ease-in-out;
+          animation: eq 1s 3588ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(93) {
+  -webkit-animation: eq 1s 3255ms infinite ease-in-out;
+          animation: eq 1s 3255ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(94) {
+  -webkit-animation: eq 1s 1786ms infinite ease-in-out;
+          animation: eq 1s 1786ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(95) {
+  -webkit-animation: eq 1s 1425ms infinite ease-in-out;
+          animation: eq 1s 1425ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(96) {
+  -webkit-animation: eq 1s 1152ms infinite ease-in-out;
+          animation: eq 1s 1152ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(97) {
+  -webkit-animation: eq 1s 582ms infinite ease-in-out;
+          animation: eq 1s 582ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(98) {
+  -webkit-animation: eq 1s 784ms infinite ease-in-out;
+          animation: eq 1s 784ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(99) {
+  -webkit-animation: eq 1s 2970ms infinite ease-in-out;
+          animation: eq 1s 2970ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .bars_bar:nth-of-type(100) {
+  -webkit-animation: eq 1s 1400ms infinite ease-in-out;
+          animation: eq 1s 1400ms infinite ease-in-out;
+}
+body .player_inner__middle .cube_inner__front .details {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  text-align: center;
+}
+body .player_inner__middle .cube_inner__front .details_album {
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+  background: white;
+  border-radius: 4px;
+  margin: 0 auto;
+  
+  margin-bottom: 20px;
+}
+body .player_inner__middle .cube_inner__front .details h2 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+body .player_inner__middle .cube_inner__front .details h3 {
+  font-size: 10px;
+  margin: 0;
+  opacity: 0.6;
+  font-weight: 400;
+}
+body .player_inner__middle .cube_inner__top {
+  transform: rotateX(-90deg);
+  transform-origin: 0 0;
+  background: yellow !important;
+}
+body .player_inner__middle .cube_inner__bottom {
+  transform: rotateX(90deg);
+  background: purple !important;
+  transform-origin: 0 380px;
+}
+body .player_inner__middle .cube_inner__left {
+    overflow-y: scroll;
+    /* display: table; */
+    margin-right: 0px !important;
+    padding-right: 9rem !important;
+    padding-left: 0rem !important;
+  background: #354752 !important;
+  transform: rotateY(90deg);
+  transform-origin: 0 0;
+}
+body .player_inner__middle .cube_inner__left .options {
+    overflow: hidden !important;
+  /* margin-left: 15px;
+  margin-right: 15px; */
+  /* padding-right:10px; */
+  /* top: 60px !important;
+  left:20px !important;
+  right: 20px !important;
+  position: absolute !important; */
+  font-weight: 450;
+  color: #000;
+  transform: rotatey(180deg) translatez(50px);
+}
+body .player_inner__middle .cube_inner__left .options i {
+  color: white;
+  font-size: 24px;
+  display: block;
+  margin-bottom: 53px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+body .player_inner__middle .cube_inner__left .options i:hover {
+  color: #44f5b7;
+}
+body .player_inner__middle .cube_inner__right {
+  background: #354752 !important;
+  transform: rotateY(-90deg);
+  transform-origin: 380px 0;
+}
+body .player_inner__middle .cube_inner__right .volume {
+  left: 210px;
+  top: 60px;
+  position: absolute;
+}
+body .player_inner__middle .cube_inner__right .volume_pip {
+  width: 40px;
+  height: 6px;
+  margin-bottom: 10px;
+  background: #ffffff2e;
+}
+body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(14), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(13), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(12), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(11) {
+  background: #44f5b7;
+}
+body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(10), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(9), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(8), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(7) {
+  background: #f5c844;
+}
+body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(6), body .player_inner__middle .cube_inner__right .volume_pip:nth-of-type(5) {
+  background: #f54444;
+}
+body .player_inner__middle .cube_inner__right .volume i {
+  transform: rotatez(180deg) rotatey(89deg);
+  color: white;
+  font-size: 20px;
+  position: relative;
+  left: 10px;
+  top: 24px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+body .player_inner__bottom {
+  height: 190px;
+  padding: 30px;
+  
+
+  
+}
+body .player_inner__bottom h1{
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+body .player_inner__bottom h4{
+  font-weight: 650;
+  font-size: 0.9rem;
+}
+body .player_inner__bottom h5{
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+body .player_inner__bottom .ytmusic{
+  position: relative;
+    background-color: rgb(251, 41, 41);
+    font-weight: 500;
+    border-width: 0;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      /* background: black; */
+      border-radius: 4em;
+      font-size: 0.7rem;
+      /* color :black; */
+      padding: 0.5em;
+      cursor: pointer;
+      /* user-select: none; */
+      text-align: center;
+      text-decoration: none;
+      transition-duration: 0.4;
+}
+
+.bi-play-circle{
+  font-size: 100px;
+}
+
+
+@-webkit-keyframes eq {
+  0% {
+    height: 30px;
+  }
+  50% {
+    height: 100px;
+  }
+  100% {
+    height: 30px;
+  }
+}
+
+@keyframes eq {
+  0% {
+    height: 30px;
+  }
+  50% {
+    height: 100px;
+  }
+  100% {
+    height: 30px;
+  }
+}
