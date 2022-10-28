@@ -130,10 +130,7 @@ function uploadBlob(blob) {
 
         processdata(datasandstatus);
       }
-      )
-      
-      
-      .catch(err => console.log(err));
+      ).catch((err)=> console.log(err));
   }
 
   function processdata(datasandstatus){
