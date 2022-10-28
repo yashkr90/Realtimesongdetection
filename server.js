@@ -10,6 +10,7 @@ const { promisify } = require('util')
 
 const unlinkAsync = promisify(fs.unlink)
 
+const port=3000;
 
 
 // const fetch =require("node-fetch");
@@ -217,7 +218,7 @@ app.post("/putval",(req,res)=>{
 
 })
 
-app.listen(3000,function(){
+app.listen(process.env.PORT || port,function(){
     console.log("Server started on port 3000");
 });
 
