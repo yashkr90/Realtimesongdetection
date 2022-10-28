@@ -1,2 +1,3 @@
 *.wav
+.env
 node_modules

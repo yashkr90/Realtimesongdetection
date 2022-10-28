@@ -4,10 +4,12 @@ const bodyParser=require("body-parser");
 var multer  = require('multer');
 const fs = require('fs');
 const path = require("path");
+require('dotenv').config()
 
 const { promisify } = require('util')
 
 const unlinkAsync = promisify(fs.unlink)
+
 
 
 // const fetch =require("node-fetch");
@@ -39,7 +41,7 @@ var type = upload.single('upl');
 
 var lyrics={};
 var lyricsarr=[];
-
+const api_key=process.env.API_KEY;
 
 app.get("/", (req,res)=>{
 
@@ -75,7 +77,7 @@ app.post("/",type,(req,res)=>{
     url: 'https://shazam-core.p.rapidapi.com/v1/tracks/recognize',
     headers: {
       'content-type': 'multipart/form-data; boundary=---011000010111000001101001',
-      'X-RapidAPI-Key': '93948ec041msh9f1ef4500797f4ap198fc9jsna9559c16dff0',
+      'X-RapidAPI-Key': api_key,
       'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com',
       useQueryString: true
     },
