@@ -103,7 +103,7 @@ function uploadBlob(blob) {
       // myfile.lastModifiedDate = new Date();
       // myfile.name = "curraudio.mpeg";
       console.log("blob fuc called");
-      fetch('https://musicrealtime.herokuapp.com', {
+      fetch('https://musicrealtime.herokuapp.com/', {
 
           // HTTP request type
           method: "POST",
