@@ -5,14 +5,15 @@ var multer  = require('multer');
 const fs = require('fs');
 const path = require("path");
 require('dotenv').config()
-
+console.log(process.env);
 const { promisify } = require('util')
 
 const unlinkAsync = promisify(fs.unlink)
 
 const port=3000;
-
-
+// console.log(process.env.NODE_ENV);
+var enviroment=process.env.NODE_ENV ||'development';
+console.log(enviroment);
 // const fetch =require("node-fetch");
 // import fetch from 'node-fetch';
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));

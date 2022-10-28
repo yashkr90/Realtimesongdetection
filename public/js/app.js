@@ -7,11 +7,12 @@ var body=document.querySelector("body");
 var heading=document.querySelector(".writing");
 var chunks = [];
 
-
-
+const port=3000;
+import { constants } from "fs/promises";
+// import{config} from './public/js/constants'
 var datasandstatus={};
-
-    
+// const url=config.url;
+// console.log(url);
 
 
 
@@ -105,7 +106,7 @@ function uploadBlob(blob) {
       // myfile.lastModifiedDate = new Date();
       // myfile.name = "curraudio.mpeg";
       console.log("blob fuc called");
-      fetch('/', {
+      fetch('http://musicrealtime.herokuapp.com', {
 
           // HTTP request type
           method: "POST",
@@ -201,7 +202,7 @@ function uploadBlob(blob) {
       successform.appendChild(input6);
       // successform.appendChild(input4);
 
-      fetch("/putval",{
+      fetch("http://musicrealtime.herokuapp.com/putval",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
