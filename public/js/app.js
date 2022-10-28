@@ -8,11 +8,10 @@ var heading=document.querySelector(".writing");
 var chunks = [];
 
 const port=3000;
-import { constants } from "fs/promises";
-// import{config} from './public/js/constants'
+// import { constants } from "fs/promises";
+
 var datasandstatus={};
-// const url=config.url;
-// console.log(url);
+
 
 
 
