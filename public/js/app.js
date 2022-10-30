@@ -3,6 +3,8 @@ console.log(record.innerHTML);
 const stop =document.querySelector(".stop");
 var body=document.querySelector("body");
 var heading=document.querySelector(".writing");
+var footers=document.querySelector("footer");
+
 var chunks = [];
 
 
@@ -27,7 +29,8 @@ device.then((stream)=>{
         record.classList.add("pulsing");
         body.classList.remove("blackgradient");
         body.classList.add("yellowgradient");
-        
+        footers.innerText="Listening For Music...";
+        footers.style.color='#000000';
         mediaRecorder.start(5000);
         setTimeout(() => {
           mediaRecorder.stop();
