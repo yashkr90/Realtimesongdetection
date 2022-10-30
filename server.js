@@ -46,7 +46,7 @@ var lyricsarr=[];
 const api_key=process.env.API_KEY;
 
 app.get("/", (req,res)=>{
-
+  lyricsarr=[];
     res.sendFile(__dirname+"/index.html");
     
    
