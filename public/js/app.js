@@ -162,67 +162,86 @@ function uploadBlob(blob) {
     console.log("lyrics is of" +typeof lyrics);
     console.log(lyrics);
 
+var arr=[trackname,artistname,imgsrc,artistimage,genres,yturl];
+var arrtext=['trackname','artistname','imgsrc','artistimage','genres','yturl'];
 
 
-    var input1=document.createElement('input')
-    var input2=document.createElement('input')
-    var input3=document.createElement('input')
-    var input4=document.createElement('input')
-    var input5=document.createElement('input')
-    var input6=document.createElement('input')
-    // var input4=document.createElement('input')
-      input1.name='artistname';
-      input2.name='trackname';
-      input3.name='imgsrc';
-      input4.name='artistimage';
-      input5.name='genres';
-      input6.name='yturl';
-      // input4.name='lyrics';
+for (let i = 0; i < 6; i++) {
+  var input=document.createElement('input');
+  input.name=arrtext[i];
+  input.value=arr[i];
+  input.type='hidden';
+  successform.appendChild(input);  
+}
+// arr.forEach(element => {
+//   var input=document.createElement('input');
+  
+//   input.name=Object.keys({ element })[0];
+//   input.value=element;
+//   input.type='hidden';
+//   successform.appendChild(input);
+// });
 
-      input1.value=artistname;
-      input2.value=trackname;
-      input3.value=imgsrc;
-      input4.value=artistimage;
-      input5.value=genres;
-      input6.value=yturl;
-      // input4.value=lyrics;
+                  // var input1=document.createElement('input')
+                  // var input2=document.createElement('input')
+                  // var input3=document.createElement('input')
+                  // var input4=document.createElement('input')
+                  // var input5=document.createElement('input')
+                  // var input6=document.createElement('input')
+                  // // var input4=document.createElement('input')
+                  //   input1.name='artistname';
+                  //   input2.name='trackname';
+                  //   input3.name='imgsrc';
+                  //   input4.name='artistimage';
+                  //   input5.name='genres';
+                  //   input6.name='yturl';
+                  //   // input4.name='lyrics';
 
-      input1.type='hidden';
-      input2.type='hidden';
-      input3.type='hidden';
-      input4.type='hidden';
-      input5.type='hidden';
-      input6.type='hidden';
+                  //   input1.value=artistname;
+                  //   input2.value=trackname;
+                  //   input3.value=imgsrc;
+                  //   input4.value=artistimage;
+                  //   input5.value=genres;
+                  //   input6.value=yturl;
+                  //   // input4.value=lyrics;
 
-      successform.appendChild(input1);
-      successform.appendChild(input2);
-      successform.appendChild(input3);
-      successform.appendChild(input4);
-      successform.appendChild(input5);
-      successform.appendChild(input6);
+                  //   input1.type='hidden';
+                  //   input2.type='hidden';
+                  //   input3.type='hidden';
+                  //   input4.type='hidden';
+                  //   input5.type='hidden';
+                  //   input6.type='hidden';
+
+                  //   successform.appendChild(input1);
+                  //   successform.appendChild(input2);
+                  //   successform.appendChild(input3);
+                  //   successform.appendChild(input4);
+                  //   successform.appendChild(input5);
+                  //   successform.appendChild(input6);
       // successform.appendChild(input4);
 
-      fetch("/putval",{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(lyrics)
-      }).then((res)=>{
-        console.log('lyricspassed');
-      // successform.submit();
-    }).catch((err)=>{console.log("error oc")
-    console.log(err)});
+    fetch("/putval",{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(lyrics)
+    }).then((res)=>{
+      console.log('lyricspassed');
+    // successform.submit();
+  }).catch((err)=>{console.log("error oc")
+  console.log(err)});
 
-    successform.submit();
-    }
-    
-    else{
+  successform.submit();
 
-      console.log("inside failed");
-      var failureform=document.getElementById("failure");
-      console.log(failureform);
-      failureform.submit();
-    }
+  }
+          
+  else{
+
+    console.log("inside failed");
+    var failureform=document.getElementById("failure");
+    console.log(failureform);
+    failureform.submit();
+  }
 
   }
